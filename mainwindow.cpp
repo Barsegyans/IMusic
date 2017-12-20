@@ -3,7 +3,7 @@
 #include "albumdialog.h"
 #include "artistdialog.h"
 #include "ratingdelegate.h"
-
+#include <QDebug>
 #include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -86,9 +86,15 @@ void MainWindow::on_actionAddTrack_triggered()
 {
     QModelIndex cur_index = ui->treeView->selectionModel()->currentIndex();
 
+    Item *item = static_cast<Item*>(cur_index.internalPointer());
 
-    int row = model->rowCount(cur_index);
-    model->insertRow(row, cur_index);
+    if(item->toAlbum()){
+        int row = model->rowCount(cur_index);
+        model->insertRow(row, cur_index);
+    }else if(item->toTrack()){
+        int row = model->rowCount(cur_index.parent());
+        model->insertRow(row, cur_index.parent());
+    }
 
     setModified();
 }
@@ -161,7 +167,7 @@ void MainWindow::setModified()
 void MainWindow::update_active_actions(QModelIndex index)
 {
     Item *cur_item=static_cast<Item*>(index.internalPointer());
-    if(!cur_item or !index.isValid())
+    if(!cur_item || !index.isValid())
     {
         ui->actionEdit->setEnabled(false);
         ui->actionDelete->setEnabled(false);
