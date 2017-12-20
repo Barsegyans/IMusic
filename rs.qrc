@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/create.png</file>
+        <file>icons/exit.png</file>
+        <file>icons/icons8-стереть-символ-40.png</file>
+        <file>icons/inf1.png</file>
+        <file>icons/inf2.png</file>
+        <file>icons/open.png</file>
+        <file>icons/save.png</file>
+        <file>icons/icons8-музыка-40.png</file>
+        <file>icons/icons8-редактировать-40.png</file>
+        <file>icons/icons8-диджей-40.png</file>
+        <file>icons/icons8-пластинка-40.png</file>
+        <file>icons/icons8-табулатура-40.png</file>
+        <file>about.txt</file>
+    </qresource>
+</RCC>
